@@ -1,0 +1,11 @@
+﻿Создать родительское задание, и задать ему продолжение на случай TaskContinuationOptions.OnlyOnFaulted. Когда завершатся все дочерние задания, родительское продолжение 
+выведет все исключения из parent.InnerExceptions. Запустить родительское задание.
+Само задание должно делать следующее:
+- создать фабрику заданий, так, чтобы ContinueWith выполнялся синхронно, используй TaskContinuationOptions.ExecuteSynchronously.
+Ещё используй TaskCreationOptions.AttachedToParent.
+- с помощью фабрики создай и запусти три дочерних задания.
+- каждое упавшее из них продолжи t => cts.Cancel()
+- фабрику продолжи так
+ - tf.ContinueWhenAll - посчитать максимум из всех дочерних, кто RanToCompletion. Если помнишь, расчёт будет идти синхронно, в том же потоке, что и создание фабрики.
+     .ContinueWith - вывод результата на консоль, сделай тоже с TaskContinuationOptions.ExecuteSynchronously
+
