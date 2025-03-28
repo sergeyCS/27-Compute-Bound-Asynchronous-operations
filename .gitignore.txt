@@ -1,0 +1,6 @@
+#Directories
+bin/
+obj/
+Debug/
+Release/
+.vs/
